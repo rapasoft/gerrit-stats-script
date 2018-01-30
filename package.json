@@ -1,0 +1,22 @@
+{
+  "name": "gerrit-stats-script",
+  "version": "1.0.0",
+  "description": "Just some quick stats",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Pavol Rajzak",
+  "license": "ISC",
+  "dependencies": {
+    "Base64": "^1.0.1",
+    "fetch": "^1.1.0",
+    "json2csv": "^3.11.5",
+    "moment": "^2.20.1",
+    "request": "^2.83.0",
+    "request-promise": "^4.2.2"
+  },
+  "devDependencies": {
+    "express": "^4.16.2"
+  }
+}

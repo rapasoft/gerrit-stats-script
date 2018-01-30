@@ -1,0 +1,61 @@
+body {
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+#app {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+}
+
+.comment-body {
+    padding: 0.5em;
+    display: flex;
+}
+
+.subject {
+    display: block;
+    padding: 0.2em;
+    font-weight: 900;
+}
+
+.author {
+    font-weight: bold;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+
+.author-badge {
+    width: 75px;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 75px;
+    font-size: 2em;
+    text-align: center;
+    line-height: 75px;
+}
+
+.message {
+    display: block;
+    width: 80%;
+    flex-grow: 2;
+    flex-shrink: 2;
+    padding: 0.5em;
+    overflow-wrap: break-word;
+}
+
+.time {
+    font-style: italic;
+    display: inline;
+}
+
+.subheader {
+    font-size: 0.6em;
+}

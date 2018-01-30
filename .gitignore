@@ -1,0 +1,9 @@
+node_modules
+*.csv
+*.iml
+.idea
+package-lock.json
+
+# This should not be pushed to Git repo
+configuration.js
+reviewer-report.js
