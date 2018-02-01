@@ -49,12 +49,13 @@ function displayNotificationForNewComments(newCache) {
         .forEach(comment => showNotification(comment))
 }
 
-const fetchAndAppendComments = () => window.fetch('http://localhost:3000/comments')
-    .then(response => response.json())
-    .then(addToCacheAndFlagNew)
-    .then(createListOfComments) // defined in comment-list-component.js
-    .then(appendToElement)
-    .catch((error) => console.log(`Well this is awkward... An error occurred: ${error}`));
+const fetchAndAppendComments =
+    () => window.fetch('http://localhost:3000/comments')
+        .then(response => response.json())
+        .then(addToCacheAndFlagNew)
+        .then(createListOfComments) // defined in comment-list-component.js
+        .then(appendToElement)
+        .catch((error) => console.log(`Well this is awkward... An error occurred: ${error}`));
 
 // Application initialization
 

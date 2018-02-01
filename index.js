@@ -15,13 +15,19 @@ app.use('/ui', express.static('ui'));
 //     }, require('./reviewer-report'), "changes/")
 //         .then(stats => res.json(stats))
 // );
-app.get('/comments', (req, res) =>
+let fetchComments = (req, res) =>
     performGerritRequest({
         status: "open",
         ownerGroup: WORK_GROUP,
         additionalOptions: ["DETAILED_LABELS", "DETAILED_ACCOUNTS", "MESSAGES"]
     }, require('./recent-activity'), "changes/")
-        .then((comments) => res.json(comments))
-);
+        .then((comments) => res.json(comments));
+
+if (process.argv[2] === 'test') {
+    fetchComments = (req, res) =>
+        res.json(require('./test/random-data'))
+}
+
+app.get('/comments', fetchComments);
 
 app.listen(3000);

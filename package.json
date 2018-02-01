@@ -4,7 +4,8 @@
   "description": "Just some quick stats",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "start:dev": "node index.js test"
   },
   "author": "Pavol Rajzak",
   "license": "ISC",
