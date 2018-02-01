@@ -3,7 +3,7 @@
 ## Preconditions
  
 You should have:
-- node.js installed
+- node.js installed (version 8+ or the one that supports ES6+)
 - Chrome or other browser that supports ES6 and Notification API
 - Gerrit, duh
 
@@ -14,8 +14,6 @@ Clone the project and rename `configuration.example.js` to `configuration.js` an
 `npm start`
 
 It will start an instance of express.js server on port 3000. You should be able to open browser on `http://localhost:3000/ui` to display UI. First you will be required to enable notifications in order to receive some.
-
-
 
 ## Contribution
 
