@@ -32,3 +32,13 @@ function calculateBackgroundFor(author) {
 function initialsOf(author) {
     return author.split(" ").map(word => word.charAt(0)).reduce((a, b) => a + b);
 }
+
+function showNotification(comment) {
+    const options = {
+        body: comment.author + '@' + comment.updatedFormatted + '\n' + comment.message
+    };
+    const notification = new Notification(comment.subject, options);
+    notification.onclick = () => window.open(buildCommentLink(comment));
+}
+
+export {buildCommentLink, simpleHash, calculateBackgroundFor, initialsOf, showNotification};

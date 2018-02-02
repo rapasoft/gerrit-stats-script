@@ -24,10 +24,23 @@ let fetchComments = (req, res) =>
         .then((comments) => res.json(comments));
 
 if (process.argv[2] === 'test') {
-    fetchComments = (req, res) =>
-        res.json(require('./test/random-data'))
+    fetchComments = (req, res) => {
+        let data = require('./test/random-data');
+        data[0] = {
+            subject: 'feat: A completely new feature!',
+            reviewNumber: 478,
+            message: 'Yqoqbgfi ucyhj vhw 5.',
+            author: 'Uvkcp Jqng Pgudø',
+            patchSet: 1,
+            updated: new Date(),
+            updatedFormatted: require('moment')(new Date()).format(require('./constants').DATE_FORMAT)
+        };
+        return res.json(data);
+    }
 }
 
 app.get('/comments', fetchComments);
 
 app.listen(3000);
+
+console.log('Server started...');

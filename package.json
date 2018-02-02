@@ -4,7 +4,8 @@
   "description": "Just some quick stats",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "start": "webpack ui/bundle-definition.js ui/bundle.js && node index.js",
+    "bundle:watch": "webpack --watch ui/bundle-definition.js ui/bundle.js",
     "start:dev": "node index.js test"
   },
   "author": "Pavol Rajzak",
@@ -18,6 +19,13 @@
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "express": "^4.16.2"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "css-loader": "^0.28.9",
+    "express": "^4.16.2",
+    "style-loader": "^0.20.1",
+    "webpack": "^3.10.0"
   }
 }

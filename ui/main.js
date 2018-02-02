@@ -1,13 +1,7 @@
 // Global "state" of our application
-
-let unread = 0;
-let commentCache = [];
-let cacheOfHashes = [];
-
-function markAllAsRead() {
-    document.title = 'Gerrit Comments';
-    unread = 0;
-}
+import composeAppComponents from './components';
+import {showNotification, simpleHash} from './util';
+import {STATE} from './app-state';
 
 function appendToElement(commentBlock) {
     document.getElementById('app').innerHTML = commentBlock;
@@ -16,31 +10,17 @@ function appendToElement(commentBlock) {
 function addToCacheAndFlagNew(comments) {
     const newCache = comments
         .map((comment) => ({...comment, hash: simpleHash(JSON.stringify(comment))}))
-        .map((comment) => !cacheOfHashes.includes(comment.hash) ?
+        .map((comment) => !STATE.comments.map((comment) => comment.hash).includes(comment.hash) ?
             {...comment, status: 'New'} :
             {...comment, status: 'Old'});
 
-    if (commentCache.length > 0) {
+    if (STATE.comments.length > 0) {
         displayNotificationForNewComments(newCache);
     }
 
-    if (commentCache.length < newCache.length) {
-        unread += newCache.length - commentCache.length;
-        document.title = `(${unread}) Gerrit Comments`;
-    }
+    STATE.comments = newCache;
 
-    cacheOfHashes = newCache.map((comment) => comment.hash);
-    commentCache = newCache;
-
-    return newCache;
-}
-
-function showNotification(comment) {
-    const options = {
-        body: comment.author + '@' + comment.updatedFormatted + '\n' + comment.message
-    };
-    const notification = new Notification(comment.subject, options);
-    notification.onclick = () => window.open(buildCommentLink(comment));
+    return STATE.comments;
 }
 
 function displayNotificationForNewComments(newCache) {
@@ -53,7 +33,7 @@ const fetchAndAppendComments =
     () => window.fetch('http://localhost:3000/comments')
         .then(response => response.json())
         .then(addToCacheAndFlagNew)
-        .then(createListOfComments) // defined in comment-list-component.js
+        .then(composeAppComponents)
         .then(appendToElement)
         .catch((error) => console.log(`Well this is awkward... An error occurred: ${error}`));
 
