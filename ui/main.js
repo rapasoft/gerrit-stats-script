@@ -2,12 +2,13 @@
 import composeAppComponents from './components';
 import {showNotification, simpleHash} from './util';
 import {STATE} from './app-state';
+import PubSub from 'pubsub-js';
 
 function appendToElement(commentBlock) {
     document.getElementById('app').innerHTML = commentBlock;
 }
 
-function addToCacheAndFlagNew(comments) {
+function prepare(comments) {
     const newCache = comments
         .map((comment) => ({...comment, hash: simpleHash(JSON.stringify(comment))}))
         .map((comment) => !STATE.comments.map((comment) => comment.hash).includes(comment.hash) ?
@@ -15,7 +16,7 @@ function addToCacheAndFlagNew(comments) {
             {...comment, status: 'Old'});
 
     if (STATE.comments.length > 0) {
-        displayNotificationForNewComments(newCache);
+        // displayNotificationForNewComments(newCache);
     }
 
     STATE.comments = newCache;
@@ -32,8 +33,8 @@ function displayNotificationForNewComments(newCache) {
 const fetchAndAppendComments =
     () => window.fetch('http://localhost:3000/comments')
         .then(response => response.json())
-        .then(addToCacheAndFlagNew)
-        .then(composeAppComponents)
+        .then(prepare)
+        .then((comments) => composeAppComponents(comments, STATE))
         .then(appendToElement)
         .catch((error) => console.log(`Well this is awkward... An error occurred: ${error}`));
 
@@ -42,6 +43,8 @@ const fetchAndAppendComments =
 Notification.requestPermission().then(function (result) {
     console.log(result);
 });
+
+PubSub.subscribe('STATE', fetchAndAppendComments);
 
 fetchAndAppendComments();
 
