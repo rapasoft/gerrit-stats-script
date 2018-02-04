@@ -7,11 +7,18 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['babel-preset-env'],
-
-                        plugins: [require('babel-plugin-transform-object-rest-spread')]
+                        presets: ['babel-preset-env', 'react'],
+                        plugins: [
+                            require('babel-plugin-transform-object-rest-spread'),
+                            "add-react-displayname"
+                        ]
                     }
                 }
+            },
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: ['eslint-loader']
             },
             {
                 test: /\.css$/,

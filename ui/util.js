@@ -1,5 +1,5 @@
 // TODO: This should be put in configuration file as well
-var GERRIT_URL = "https://source.esec.bbsas.no";
+const GERRIT_URL = "https://source.esec.bbsas.no";
 
 function buildCommentLink(comment) {
     let url = `${GERRIT_URL}/#/c/${comment.reviewNumber}/${comment.patchSet}/`;
@@ -37,8 +37,9 @@ function showNotification(comment) {
     const options = {
         body: comment.author + '@' + comment.updatedFormatted + '\n' + comment.message
     };
-    const notification = new Notification(comment.subject, options);
-    notification.onclick = () => window.open(buildCommentLink(comment));
+    // const notification = new Notification(comment.subject, options);
+    // notification.onclick = () => window.open(buildCommentLink(comment));
+    console.log(options);
 }
 
 export {buildCommentLink, simpleHash, calculateBackgroundFor, initialsOf, showNotification};

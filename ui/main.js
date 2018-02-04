@@ -1,27 +1,27 @@
-// Global "state" of our application
-import composeAppComponents from './components';
-import {showNotification, simpleHash} from './util';
-import {STATE} from './app-state';
-import PubSub from 'pubsub-js';
+import React from 'react';
+import ReactDOM from 'react-dom';
+import PubSub from "pubsub-js";
 
-function appendToElement(commentBlock) {
-    document.getElementById('app').innerHTML = commentBlock;
-}
+import App from './app';
+import STATE from './app-state';
+import {showNotification, simpleHash} from "./util";
 
-function prepare(comments) {
+import './main.css';
+import './components.css';
+import MESSAGES from "./message-constants";
+
+function prepare(comments, oldComments) {
     const newCache = comments
         .map((comment) => ({...comment, hash: simpleHash(JSON.stringify(comment))}))
-        .map((comment) => !STATE.comments.map((comment) => comment.hash).includes(comment.hash) ?
+        .map((comment) => !oldComments.map((comment) => comment.hash).includes(comment.hash) ?
             {...comment, status: 'New'} :
             {...comment, status: 'Old'});
 
-    if (STATE.comments.length > 0) {
-        // displayNotificationForNewComments(newCache);
+    if (oldComments.length > 0) {
+        displayNotificationForNewComments(newCache);
     }
 
-    STATE.comments = newCache;
-
-    return STATE.comments;
+    return newCache;
 }
 
 function displayNotificationForNewComments(newCache) {
@@ -33,18 +33,15 @@ function displayNotificationForNewComments(newCache) {
 const fetchAndAppendComments =
     () => window.fetch('http://localhost:3000/comments')
         .then(response => response.json())
-        .then(prepare)
-        .then((comments) => composeAppComponents(comments, STATE))
-        .then(appendToElement)
-        .catch((error) => console.log(`Well this is awkward... An error occurred: ${error}`));
+        .then((comments) => prepare(comments, STATE.comments))
+        .then((comments) => PubSub.publish(MESSAGES.STATE_CHANGED, {comments: comments}))
+        .catch((error) => console.error(`Well this is awkward... An error occurred: ${error}`));
 
 // Application initialization
 
 Notification.requestPermission().then(function (result) {
-    console.log(result);
+    console.info(`Notification permissions: ${result}`);
 });
-
-PubSub.subscribe('STATE', fetchAndAppendComments);
 
 fetchAndAppendComments();
 
@@ -52,3 +49,7 @@ window.setInterval(
     fetchAndAppendComments,
     60000
 );
+
+PubSub.subscribe(MESSAGES.SHOULD_RERENDER_VIEW, (event, STATE) => {
+    ReactDOM.render(<App {...STATE} />, document.getElementById('app'));
+});

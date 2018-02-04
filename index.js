@@ -42,5 +42,3 @@ if (process.argv[2] === 'test') {
 app.get('/comments', fetchComments);
 
 app.listen(3000);
-
-console.log('Server started...');
