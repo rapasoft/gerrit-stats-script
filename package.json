@@ -6,7 +6,8 @@
   "scripts": {
     "bundle": "webpack ui/main.js ui/bundle.js && node index.js",
     "bundle:watch": "webpack --watch ui/main.js ui/bundle.js",
-    "start:dev": "node index.js test"
+    "start:dev": "node index.js test",
+    "start": "node index.js"
   },
   "author": "Pavol Rajzak",
   "license": "ISC",

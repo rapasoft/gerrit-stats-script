@@ -19,8 +19,6 @@ function groupByKey(comments, by) {
         comments[i].squash = comments[i - 1][key] === comments[i][key];
     }
 
-    console.log(comments);
-
     return comments;
 }
 
