@@ -1,3 +1,13 @@
+.squashed-card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
+    background: white;
+    margin-top: -1em;
+}
+
+.squashed-card-bottom {
+    margin-bottom: 1em;
+}
+
 .comment-body {
     padding: 0.5em;
     display: flex;
@@ -16,13 +26,13 @@
 }
 
 .author-badge {
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     border: 1px solid black;
-    border-radius: 75px;
-    font-size: 2em;
+    border-radius: 50px;
+    font-size: 1em;
     text-align: center;
-    line-height: 75px;
+    line-height: 50px;
 }
 
 .message {

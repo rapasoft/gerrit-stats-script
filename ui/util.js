@@ -25,8 +25,8 @@ function intToRGB(i) {
     return "00000".substring(0, 6 - c.length) + c;
 }
 
-function calculateBackgroundFor(author) {
-    return '#' + intToRGB(simpleHash(author));
+function calculateBackgroundFor(value) {
+    return '#' + intToRGB(simpleHash(value));
 }
 
 function initialsOf(author) {

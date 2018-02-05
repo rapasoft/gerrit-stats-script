@@ -5,17 +5,17 @@ const menu = ({groupBy, triggerChange}) => (<div id="menu">
     <div style={{display: 'inline-block'}}>
         Group by:
         <div style={{display: 'inline-block', marginRight: '10px'}}>
-            <input type="checkbox"
+            <input type="checkbox" disabled={groupBy.subject || groupBy.time}
                    onClick={() => triggerChange({groupBy: {author: !groupBy.author}})}
                    value={groupBy.author}/>Author
         </div>
         <div style={{display: 'inline-block', marginRight: '10px'}}>
-            <input type="checkbox"
+            <input type="checkbox" disabled={groupBy.author || groupBy.time}
                    onClick={() => triggerChange({groupBy: {subject: !groupBy.subject}})}
                    value={groupBy.subject}/>Subject
         </div>
         <div style={{display: 'inline-block', marginRight: '10px'}}>
-            <input type="checkbox"
+            <input type="checkbox" disabled={groupBy.subject || groupBy.author}
                    onClick={() => triggerChange({groupBy: {time: !groupBy.time}})}
                    value={groupBy.time}/>Time
         </div>
