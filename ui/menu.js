@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const menu = ({groupBy, triggerChange}) => (<div id="menu">
+const menu = ({groupBy, triggerChange, markAllAsRead}) => (<div id="menu">
     <div style={{display: 'inline-block'}}>
         Group by:
         <div style={{display: 'inline-block', marginRight: '10px'}}>
@@ -20,13 +20,17 @@ const menu = ({groupBy, triggerChange}) => (<div id="menu">
                    value={groupBy.time}/>Time
         </div>
     </div>
+    <div style={{display: 'inline-block'}}>
+        <a href="#" onClick={() => markAllAsRead()}>(Mark all as read)</a>
+    </div>
 </div>);
 
 menu.propTypes = {
     comments: PropTypes.array,
     filter: PropTypes.object,
     groupBy: PropTypes.object,
-    triggerChange: PropTypes.func
+    triggerChange: PropTypes.func,
+    markAllAsRead: PropTypes.func,
 };
 
 export default menu;

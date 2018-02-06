@@ -4,10 +4,9 @@
   "description": "Just some quick stats",
   "main": "index.js",
   "scripts": {
-    "bundle": "webpack ui/main.js ui/bundle.js && node index.js",
+    "start": "webpack ui/main.js ui/bundle.js && node index.js",
     "bundle:watch": "webpack --watch ui/main.js ui/bundle.js",
-    "start:dev": "node index.js test",
-    "start": "node index.js"
+    "start:dev": "node index.js test"
   },
   "author": "Pavol Rajzak",
   "license": "ISC",

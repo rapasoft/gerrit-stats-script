@@ -23,10 +23,10 @@ let fetchComments = (req, res) =>
     }, require('./recent-activity'), "changes/")
         .then((comments) => res.json(comments));
 
+const data = require('./test/random-data');
 if (process.argv[2] === 'test') {
     fetchComments = (req, res) => {
-        let data = require('./test/random-data');
-        data[0] = {
+        data.unshift({
             subject: 'feat: A completely new feature!',
             reviewNumber: 478,
             message: 'Yqoqbgfi ucyhj vhw 5.',
@@ -34,7 +34,7 @@ if (process.argv[2] === 'test') {
             patchSet: 1,
             updated: new Date(),
             updatedFormatted: require('moment')(new Date()).format(require('./constants').DATE_FORMAT)
-        };
+        });
         return res.json(data);
     }
 }

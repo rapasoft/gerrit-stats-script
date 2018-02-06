@@ -10,14 +10,25 @@ import './main.css';
 import './components.css';
 import MESSAGES from "./message-constants";
 
-function prepare(comments, oldComments) {
-    const newCache = comments
+function prepare(commentsFromBackend, cachedComments) {
+    const newCache = commentsFromBackend
         .map((comment) => ({...comment, hash: simpleHash(JSON.stringify(comment))}))
-        .map((comment) => !oldComments.map((comment) => comment.hash).includes(comment.hash) ?
-            {...comment, status: 'New'} :
-            {...comment, status: 'Old'});
+        .map((comment) => {
+                if (!cachedComments.map((comment) => comment.hash).includes(comment.hash)) {
+                    return {...comment, status: 'New'};
+                } else {
+                    const cachedComment = cachedComments.find(cached => cached.hash === comment.hash);
+                    if (cachedComment && (cachedComment.status === 'Unread' || cachedComment.status === 'New')) {
+                        return {...cachedComment, status: 'Unread'};
+                    }
+                    return {...comment, status: 'Old'};
+                }
+            }
+        );
 
-    if (oldComments.length > 0) {
+    document.title = `(${newCache.filter((comment) => comment.status !== 'Old').length}) Gerrit Comments`;
+
+    if (cachedComments.length > 0) {
         displayNotificationForNewComments(newCache);
     }
 

@@ -1,12 +1,14 @@
 import React from 'react';
-import PubSub from 'pubsub-js';
 
 import Menu from './menu';
 import CommentList from './comment-list';
-import MESSAGES from "./message-constants";
+import {changeState, markAllAsRead} from "./actions";
 
 const app = (state) => (<div>
-    <Menu {...state} triggerChange={(state) => PubSub.publish(MESSAGES.STATE_CHANGED, {...state})}/>
+    <Menu {...state}
+          triggerChange={changeState}
+          markAllAsRead={() => markAllAsRead(state)}
+    />
     <CommentList {...state} />
 </div>);
 
