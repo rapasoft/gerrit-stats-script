@@ -1,8 +1,7 @@
-// TODO: This should be put in configuration file as well
-const GERRIT_URL = "https://source.esec.bbsas.no";
+import {gerritUrl} from '../configuration';
 
 function buildCommentLink(comment) {
-    let url = `${GERRIT_URL}/#/c/${comment.reviewNumber}/${comment.patchSet}/`;
+    let url = `${gerritUrl}/#/c/${comment.reviewNumber}/${comment.patchSet}/`;
     if (comment.file && comment.line) {
         url += `${comment.file}@${comment.line}`;
     }
