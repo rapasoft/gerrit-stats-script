@@ -29,7 +29,7 @@ const commentList = ({comments, groupBy}) => (
                      className={"w3-panel w3-display-container" +
                      (comment.squash ? " squashed-card" : " w3-card") +
                      ((comment.squash && i < comments.length - 1 && !comments[i + 1].squash) ? " squashed-card-bottom" : "")}
-                     style={{background: ((comment.status === 'Unread' || comment.status === 'New') ? '#efe' : 'white')}}>
+                     style={{background: ((comment.status === 'Unread' || comment.status === 'New') ? '#dfd' : 'white')}}>
                     <div className="subject" style={{display: (comment.squash && groupBy.subject ? 'none' : 'block')}}>
                         <a href={buildCommentLink(comment)}>{comment.subject}</a>
                     </div>
