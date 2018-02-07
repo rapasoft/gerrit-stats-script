@@ -4,7 +4,6 @@ import {buildCommentLink, calculateBackgroundFor, initialsOf} from "./util";
 
 function groupByKey(comments, by) {
     let key;
-    console.log(by.author);
     if (by.author) {
         key = 'author';
     } else if (by.time) {
@@ -44,7 +43,13 @@ const commentList = ({comments, groupBy}) => (
                             </div>
                         </div>
                         <div className="message">{comment.message}</div>
-                        <div><a href={buildCommentLink(comment)}>(View)</a></div>
+                        <div>
+                            <a href={buildCommentLink(comment)}>
+                                <img style={{width: '1.5em', height: '1.5em'}}
+                                     src={require('./img/open_in_new_black_108x108.png')}
+                                     alt="View"/>
+                            </a>
+                        </div>
                     </div>
                 </div>)
             )
