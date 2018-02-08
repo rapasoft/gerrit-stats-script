@@ -4,6 +4,7 @@
   "description": "Just some quick stats",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
     "start": "webpack ui/main.js ui/bundle.js && node index.js",
     "bundle:watch": "webpack --watch ui/main.js ui/bundle.js",
     "start:dev": "node index.js test"
@@ -25,6 +26,7 @@
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-react-displayname": "0.0.5",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
@@ -38,6 +40,8 @@
     "eslint-plugin-jsx-a11y": "^6.0.3",
     "eslint-plugin-react": "^7.6.1",
     "eslint-watch": "^3.1.3",
+    "jest": "^22.2.1",
+    "regenerator-runtime": "^0.11.1",
     "style-loader": "^0.20.1",
     "url-loader": "^0.6.2",
     "webpack": "^3.10.0"
