@@ -32,13 +32,4 @@ function initialsOf(author) {
     return author.split(" ").map(word => word.charAt(0)).reduce((a, b) => a + b);
 }
 
-function showNotification(comment) {
-    const options = {
-        body: comment.author + '@' + comment.updatedFormatted + '\n' + comment.message,
-        icon: 'img/open_in_new_black_108x108.png'
-    };
-    const notification = new Notification(comment.subject, options);
-    notification.onclick = () => window.open(buildCommentLink(comment));
-}
-
-export {buildCommentLink, simpleHash, calculateBackgroundFor, initialsOf, showNotification};
+export {buildCommentLink, simpleHash, calculateBackgroundFor, initialsOf};

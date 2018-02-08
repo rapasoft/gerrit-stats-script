@@ -20,7 +20,6 @@ export function isNewOrUnread(comment) {
 
 export function groupByKey(comments, by) {
     let key;
-    console.log(by.author);
     if (by.author) {
         key = 'author';
     } else if (by.time) {

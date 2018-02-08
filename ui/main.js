@@ -4,7 +4,8 @@ import PubSub from "pubsub-js";
 
 import App from './app';
 import STATE from './app-state';
-import {showNotification, simpleHash} from "./util";
+import {simpleHash} from "./util";
+import showNotification from './message-notification';
 
 import './main.css';
 import './components.css';
