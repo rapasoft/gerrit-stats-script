@@ -23,7 +23,8 @@ const commentList = ({comments, groupBy}) => (
                     </div>
                     <div className="comment-body">
                         <div className="author" style={{display: (comment.squash && groupBy.author ? 'none' : 'block')}}>
-                            <div className="author-badge" style={{background: calculateBackgroundFor(comment.author)}}>
+                            <div className="author-badge" style={{background: calculateBackgroundFor(comment.author)}}
+                                 title={comment.author}>
                                 {initialsOf(comment.author)}
                             </div>
                         </div>
