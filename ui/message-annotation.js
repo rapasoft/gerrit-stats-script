@@ -28,11 +28,7 @@ function annotatePart(message) {
         return annotateMessage(message, url[0], {textDecoration: 'underline'}, {isUrl: true});
     }
     else if (message.includes('Verified+1')) {
-        return annotateMessage(message, 'Verified+1', {
-            fontWeight: 'bold',
-            color: 'green',
-            fontStyle: 'italic'
-        })
+        return annotateMessage(message, 'Verified+1', {fontWeight: 'bold', color: 'green', fontStyle: 'italic'})
     }
     else if (message.includes('Code-Review+1')) {
         return annotateMessage(message, 'Code-Review+1', {fontWeight: 'bold', color: 'green'})
@@ -42,6 +38,9 @@ function annotatePart(message) {
     }
     else if (message.includes('Code-Review-1')) {
         return annotateMessage(message, 'Code-Review-1', {fontWeight: 'bold', color: 'red'})
+    }
+    else if (message.includes('Verified-1')) {
+        return annotateMessage(message, 'Verified-1', {fontWeight: 'bold', color: 'red', fontStyle: 'italic'})
     }
     else {
         return [<span key={simpleHash(message)}>{message}</span>];
