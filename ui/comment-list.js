@@ -28,7 +28,7 @@ const commentList = ({comments, groupBy}) => (
                             </div>
                         </div>
                         <div className="message">
-                            {annotate(comment.message)}
+                            {annotate([comment.message])}
                         </div>
                         <div>
                             <a href={buildCommentLink(comment)} target="_blank">
