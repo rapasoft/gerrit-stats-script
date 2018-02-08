@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {commentPropTypes} from "./comments";
 
 const checkboxDivStyle = {
     display: 'inline-block',
@@ -43,7 +44,7 @@ const menu = ({groupBy, triggerChange, markAllAsRead}) => (<div id="menu">
 </div>);
 
 menu.propTypes = {
-    comments: PropTypes.array,
+    comments: PropTypes.arrayOf(PropTypes.shape(commentPropTypes)),
     filter: PropTypes.object,
     groupBy: PropTypes.object,
     triggerChange: PropTypes.func,

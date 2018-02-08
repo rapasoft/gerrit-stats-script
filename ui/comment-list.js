@@ -1,25 +1,8 @@
 import React from 'react';
 
 import {buildCommentLink, calculateBackgroundFor, initialsOf} from "./util";
-
-function groupByKey(comments, by) {
-    let key;
-    if (by.author) {
-        key = 'author';
-    } else if (by.time) {
-        key = 'updatedFormatted';
-    } else if (by.subject) {
-        key = 'subject';
-    } else {
-        return comments.map(comment => ({...comment, squash: false}));
-    }
-
-    for (let i = 1; i < comments.length; i++) {
-        comments[i].squash = comments[i - 1][key] === comments[i][key];
-    }
-
-    return comments;
-}
+import {commentPropTypes, groupByKey, isNewOrUnread} from "./comments";
+import annotate from "./message-annotation";
 
 const commentList = ({comments, groupBy}) => (
         groupByKey(comments, groupBy)
@@ -28,9 +11,11 @@ const commentList = ({comments, groupBy}) => (
                      className={"w3-panel w3-display-container" +
                      (comment.squash ? " squashed-card" : " w3-card") +
                      ((comment.squash && i < comments.length - 1 && !comments[i + 1].squash) ? " squashed-card-bottom" : "")}
-                     style={{background: ((comment.status === 'Unread' || comment.status === 'New') ? '#dfd' : 'white')}}>
+                     style={{background: (isNewOrUnread(comment) ? '#dfd' : 'white')}}>
                     <div className="subject" style={{display: (comment.squash && groupBy.subject ? 'none' : 'block')}}>
-                        <a href={buildCommentLink(comment)}>{comment.subject}</a>
+                        <a href={buildCommentLink(comment)} style={{textDecoration: 'none'}}>
+                            {comment.subject}
+                        </a>
                     </div>
                     <div className="subheader" style={{display: (comment.squash && groupBy.time ? 'none' : 'block')}}>
                         <div className="time">{comment.updatedFormatted}</div>
@@ -42,9 +27,11 @@ const commentList = ({comments, groupBy}) => (
                                 {initialsOf(comment.author)}
                             </div>
                         </div>
-                        <div className="message">{comment.message}</div>
+                        <div className="message">
+                            {annotate(comment.message)}
+                        </div>
                         <div>
-                            <a href={buildCommentLink(comment)}>
+                            <a href={buildCommentLink(comment)} target="_blank">
                                 <img style={{width: '1.5em', height: '1.5em'}}
                                      src={require('./img/open_in_new_black_108x108.png')}
                                      alt="View"/>
@@ -55,5 +42,7 @@ const commentList = ({comments, groupBy}) => (
             )
     )
 ;
+
+commentList.propTypes = commentPropTypes;
 
 export default commentList;

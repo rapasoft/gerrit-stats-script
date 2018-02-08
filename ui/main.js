@@ -9,6 +9,7 @@ import {showNotification, simpleHash} from "./util";
 import './main.css';
 import './components.css';
 import MESSAGES from "./message-constants";
+import {isNewOrUnread} from "./comments";
 
 function prepare(commentsFromBackend, cachedComments) {
     const newCache = commentsFromBackend
@@ -18,7 +19,7 @@ function prepare(commentsFromBackend, cachedComments) {
                     return {...comment, status: 'New'};
                 } else {
                     const cachedComment = cachedComments.find(cached => cached.hash === comment.hash);
-                    if (cachedComment && (cachedComment.status === 'Unread' || cachedComment.status === 'New')) {
+                    if (cachedComment && isNewOrUnread(cachedComment)) {
                         return {...cachedComment, status: 'Unread'};
                     }
                     return {...comment, status: 'Old'};
