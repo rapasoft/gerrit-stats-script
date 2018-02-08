@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import PubSub from "pubsub-js";
+import PubSub from 'pubsub-js';
 
 import App from './app';
 import STATE from './app-state';
 import {simpleHash} from "./util";
-import showNotification from './message-notification';
+import showNotification from './messages/message-notification';
 
 import './main.css';
 import './components.css';
-import MESSAGES from "./message-constants";
-import {isNewOrUnread} from "./comments";
+import MESSAGES from "./messages/message-constants";
+import {isNewOrUnread} from "./comments/comment-utils";
 
 function prepare(commentsFromBackend, cachedComments) {
     const newCache = commentsFromBackend

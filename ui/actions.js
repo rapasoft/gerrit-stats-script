@@ -1,6 +1,6 @@
 import PubSub from "pubsub-js";
 
-import MESSAGES from "./message-constants";
+import MESSAGES from "./messages/message-constants";
 
 export const changeState = (state) => PubSub.publish(MESSAGES.STATE_CHANGED, {...state});
 export const markAllAsRead = (state) => {

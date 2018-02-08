@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {commentPropTypes} from "./comments";
+import {commentPropTypes} from "./comments/comment-utils";
 
 const checkboxDivStyle = {
     display: 'inline-block',

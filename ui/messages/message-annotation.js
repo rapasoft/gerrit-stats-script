@@ -1,5 +1,5 @@
 import React from 'react';
-import {simpleHash} from "./util";
+import {simpleHash} from "../util";
 
 const URL_REGEXP = /https:\/\/[^\s]+/;
 

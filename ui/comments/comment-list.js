@@ -1,8 +1,8 @@
 import React from 'react';
 
-import {buildCommentLink, calculateBackgroundFor, initialsOf} from "./util";
-import {commentPropTypes, groupByKey, isNewOrUnread} from "./comments";
-import annotate from "./message-annotation";
+import {buildCommentLink, calculateBackgroundFor, initialsOf} from "../util";
+import {commentPropTypes, groupByKey, isNewOrUnread} from "../comments/comment-utils";
+import annotate from "../messages/message-annotation";
 
 const commentList = ({comments, groupBy}) => (
         groupByKey(comments, groupBy)
@@ -34,7 +34,7 @@ const commentList = ({comments, groupBy}) => (
                         <div>
                             <a href={buildCommentLink(comment)} target="_blank">
                                 <img style={{width: '1.5em', height: '1.5em'}}
-                                     src={require('./img/open_in_new_black_108x108.png')}
+                                     src={require('../img/open_in_new_black_108x108.png')}
                                      alt="View"/>
                             </a>
                         </div>

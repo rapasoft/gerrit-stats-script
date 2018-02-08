@@ -1,4 +1,4 @@
-import {buildCommentLink} from "./util";
+import {buildCommentLink} from "../util";
 
 function getIconBasedOnContent(comment) {
     if (comment.message.includes('Verified+1') || comment.message.includes('Code-Review+1')) {

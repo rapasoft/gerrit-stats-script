@@ -1,6 +1,6 @@
 import PubSub from 'pubsub-js';
 
-import MESSAGES from "./message-constants";
+import MESSAGES from "./messages/message-constants";
 
 // Default state
 
