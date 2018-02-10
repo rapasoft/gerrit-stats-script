@@ -30,6 +30,7 @@ export function groupByKey(comments, by) {
         return comments.map(comment => ({...comment, squash: false}));
     }
 
+    comments[0].squash = false;
     for (let i = 1; i < comments.length; i++) {
         comments[i].squash = comments[i - 1][key] === comments[i][key];
     }

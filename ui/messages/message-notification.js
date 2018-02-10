@@ -1,4 +1,5 @@
-import {buildCommentLink} from "../util";
+import {buildCommentLink} from '../util';
+import BrowserNotification from './notification';
 
 function getIconBasedOnContent(comment) {
     if (comment.message.includes('Verified+1') || comment.message.includes('Code-Review+1')) {
@@ -16,6 +17,6 @@ export default function showNotification(comment) {
         body: comment.author + '@' + comment.updatedFormatted + '\n' + comment.message,
         icon: getIconBasedOnContent(comment)
     };
-    const notification = new Notification(comment.subject, options);
+    const notification = new BrowserNotification(comment.subject, options);
     notification.onclick = () => window.open(buildCommentLink(comment));
 }
