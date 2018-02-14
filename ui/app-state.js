@@ -8,7 +8,7 @@ const STATE = {
     groupBy: {
         author: false,
         time: false,
-        subject: false
+        subject: true
     },
     filter: {
         author: ''
