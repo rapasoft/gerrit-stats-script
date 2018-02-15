@@ -9,6 +9,13 @@
     "bundle:watch": "webpack --watch ui/main.js ui/bundle.js",
     "start:dev": "node index.js test"
   },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest-enzyme-adapter-setup.js",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
+    }
+  },
   "author": "Pavol Rajzak",
   "license": "ISC",
   "dependencies": {
@@ -33,6 +40,8 @@
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.17.0",
     "eslint-config-airbnb": "^16.1.0",
     "eslint-loader": "^1.9.0",

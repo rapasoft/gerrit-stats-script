@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import {buildCommentLink, calculateBackgroundFor, initialsOf} from "../util";
 import {commentPropTypes, groupByKey, isNewOrUnread} from "../comments/comment-utils";
@@ -44,6 +45,9 @@ const commentList = ({comments, groupBy}) => (
     )
 ;
 
-commentList.propTypes = commentPropTypes;
+commentList.propTypes = {
+    comments: PropTypes.arrayOf(PropTypes.shape(commentPropTypes)),
+    groupBy: PropTypes.object
+};
 
 export default commentList;
