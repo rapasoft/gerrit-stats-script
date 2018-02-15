@@ -19,16 +19,19 @@ const menu = ({groupBy, triggerChange, markAllAsRead}) => (<div id="menu">
         <div style={checkboxDivStyle}>
             <input type="checkbox" disabled={groupBy.subject || groupBy.time}
                    onClick={() => triggerChange({groupBy: {author: !groupBy.author}})}
+                   defaultChecked={groupBy.author}
                    value={groupBy.author} style={checkboxStyle}/>Author
         </div>
         <div style={checkboxDivStyle}>
             <input type="checkbox" disabled={groupBy.author || groupBy.time}
                    onClick={() => triggerChange({groupBy: {subject: !groupBy.subject}})}
+                   defaultChecked={groupBy.subject}
                    value={groupBy.subject} style={checkboxStyle}/>Subject
         </div>
         <div style={checkboxDivStyle}>
             <input type="checkbox" disabled={groupBy.subject || groupBy.author}
                    onClick={() => triggerChange({groupBy: {time: !groupBy.time}})}
+                   defaultChecked={groupBy.time}
                    value={groupBy.time} style={checkboxStyle}/>Time
         </div>
     </div>
