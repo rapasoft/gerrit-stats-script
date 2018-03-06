@@ -1,8 +1,7 @@
-// TODO: This should be put in configuration file as well
-var GERRIT_URL = "https://source.esec.bbsas.no";
+import {gerritUrl} from '../configuration';
 
 function buildCommentLink(comment) {
-    let url = `${GERRIT_URL}/#/c/${comment.reviewNumber}/${comment.patchSet}/`;
+    let url = `${gerritUrl}/#/c/${comment.reviewNumber}/${comment.patchSet}/`;
     if (comment.file && comment.line) {
         url += `${comment.file}@${comment.line}`;
     }
@@ -25,10 +24,12 @@ function intToRGB(i) {
     return "00000".substring(0, 6 - c.length) + c;
 }
 
-function calculateBackgroundFor(author) {
-    return '#' + intToRGB(simpleHash(author));
+function calculateBackgroundFor(value) {
+    return '#' + intToRGB(simpleHash(value));
 }
 
 function initialsOf(author) {
     return author.split(" ").map(word => word.charAt(0)).reduce((a, b) => a + b);
 }
+
+export {buildCommentLink, simpleHash, calculateBackgroundFor, initialsOf};

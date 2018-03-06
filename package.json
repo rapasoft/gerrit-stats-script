@@ -4,20 +4,55 @@
   "description": "Just some quick stats",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
+    "test": "jest",
+    "start": "webpack ui/main.js ui/bundle.js && node index.js",
+    "bundle:watch": "webpack --watch ui/main.js ui/bundle.js",
     "start:dev": "node index.js test"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/test/jest-enzyme-adapter-setup.js",
+    "moduleNameMapper": {
+      "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/test/__mocks__/fileMock.js",
+      "\\.(css|less)$": "<rootDir>/test/__mocks__/styleMock.js"
+    }
   },
   "author": "Pavol Rajzak",
   "license": "ISC",
   "dependencies": {
     "Base64": "^1.0.1",
+    "express": "^4.16.2",
     "fetch": "^1.1.0",
     "json2csv": "^3.11.5",
     "moment": "^2.20.1",
+    "prop-types": "^15.6.0",
+    "pubsub-js": "^1.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "request": "^2.83.0",
     "request-promise": "^4.2.2"
   },
   "devDependencies": {
-    "express": "^4.16.2"
+    "babel-core": "^6.26.0",
+    "babel-jest": "^22.2.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-add-react-displayname": "0.0.5",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.9",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^1.9.0",
+    "eslint-plugin-import": "^2.8.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-react": "^7.6.1",
+    "eslint-watch": "^3.1.3",
+    "jest": "^22.2.1",
+    "regenerator-runtime": "^0.11.1",
+    "style-loader": "^0.20.1",
+    "url-loader": "^0.6.2",
+    "webpack": "^3.10.0"
   }
 }

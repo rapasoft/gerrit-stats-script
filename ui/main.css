@@ -1,0 +1,18 @@
+body {
+    font-family: Arial, Verdana, Helvetica, sans-serif;
+}
+
+#app {
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: white;
+    width: 100%;
+    z-index: 999;
+    border-bottom: dimgray 1px solid;
+}

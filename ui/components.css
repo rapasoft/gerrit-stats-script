@@ -1,18 +1,11 @@
-body {
-    font-family: Arial, Verdana, Helvetica, sans-serif;
-}
-
-#app {
-    max-width: 500px;
-    margin: 20px auto;
-}
-
-#menu {
-    position: fixed;
-    top: 0;
-    left: 0;
+.squashed-card {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16);
     background: white;
-    width: 100%;
+    margin-top: -1em;
+}
+
+.squashed-card-bottom {
+    margin-bottom: 1em;
 }
 
 .comment-body {
@@ -33,13 +26,13 @@ body {
 }
 
 .author-badge {
-    width: 75px;
-    height: 75px;
+    width: 50px;
+    height: 50px;
     border: 1px solid black;
-    border-radius: 75px;
-    font-size: 2em;
+    border-radius: 50px;
+    font-size: 1em;
     text-align: center;
-    line-height: 75px;
+    line-height: 50px;
 }
 
 .message {
