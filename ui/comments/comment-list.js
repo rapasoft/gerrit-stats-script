@@ -6,7 +6,7 @@ import {commentPropTypes, groupByKey, isNewOrUnread} from "../comments/comment-u
 import annotate from "../messages/message-annotation";
 
 const commentList = ({comments, groupBy}) => (
-        groupByKey(comments, groupBy)
+        (comments.length !== 0) ? groupByKey(comments, groupBy)
             .map((comment, i) => (
                 <div key={comment.hash}
                      className={"w3-panel w3-display-container" +
@@ -41,7 +41,7 @@ const commentList = ({comments, groupBy}) => (
                         </div>
                     </div>
                 </div>)
-            )
+            ) : <div style={{marginTop: '1em', fontSize: '2em'}}>Nothing to display, go have a coffee... ☕</div>
     )
 ;
 
